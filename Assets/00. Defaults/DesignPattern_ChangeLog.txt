@@ -1,3 +1,8 @@
 # 2025-01-06 11:00
-- 폴더 정리 및 툰쉐이더 설치
+- 폴더 정리 
+- UnityToon 설치
 - UnityChan 설치
+- InputAction 설치
+- UnityChan 캐릭터 프리팹화
+- 애니메이터 추가
+- MyCharacter 프리팹의 불필요한 하위 스크립트 제거 

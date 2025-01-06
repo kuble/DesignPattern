@@ -1,0 +1,25 @@
+#.idea
+.idea/*
+
+# Library
+Library/*
+
+# Logs
+Logs/*
+
+# Obj
+Obj/*
+
+# Packages
+Packages/*
+
+# Temp
+Temp/*
+
+#Assets
+Assets/06. Assets/*
+
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+
+

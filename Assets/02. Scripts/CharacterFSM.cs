@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//캐릭터의 유한상태기계의 상태 구분 열거형 //25-01-06
+//캐릭터의 유한상태기계의 상태 구분 열거형
+//
 public enum CharacterFSMState
 {
     Idle,

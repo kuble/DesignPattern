@@ -895,7 +895,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7729209313610078914, guid: d04c7916817e4b54e827d29c9bc57044,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2402586271917934188}
+      addedObject: {fileID: 2402586271917934193}
+    - targetCorrespondingSourceObject: {fileID: 7729209313610078914, guid: d04c7916817e4b54e827d29c9bc57044,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2402586271917934194}
   m_SourcePrefab: {fileID: 100100000, guid: d04c7916817e4b54e827d29c9bc57044, type: 3}
 --- !u!1 &2402586271917934185 stripped
 GameObject:
@@ -946,20 +950,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2402586271917934188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2402586271917934185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e02b54b312dfa44bc36c16149aaaf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  jumpForce: 10
 --- !u!54 &2402586271917934191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1010,6 +1000,31 @@ CapsuleCollider:
   m_Height: 1.5543381
   m_Direction: 1
   m_Center: {x: 0, y: 0.7751519, z: 0}
+--- !u!114 &2402586271917934193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402586271917934185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c398db1d55822264da0eb3ae9cfd08e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2402586271917934194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402586271917934185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d22bce83df19154ba530dbbb0292fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultState: IdleState
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

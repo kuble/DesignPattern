@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    [SerializeField] private IState defaultState;
+    [SerializeField] private string defaultState;
     
     private IState currentState;
     private Dictionary<Type, IState> states = new Dictionary<Type, IState>();
 
     public void Run()
     {
-        IState[] states = GetComponents<IState>();
-        foreach (var state in states)
+        IState[] stateList = GetComponents<IState>();
+        foreach (var state in stateList)
         {
             AddState(state);
         }
         
-        ChangeState(defaultState.GetType());
+        ChangeState(Type.GetType(defaultState));
     }
-    
+
     public void AddState(IState state)
     {
+    
         state.Fsm = this;
-        states.Add(typeof(IState), state);
+        state.InitState();
+        states.Add(state.GetType(), state);
     }
     
     public void ChangeState<T>() where T : IState

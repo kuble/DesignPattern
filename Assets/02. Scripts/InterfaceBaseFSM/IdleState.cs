@@ -4,33 +4,27 @@ using UnityEngine.InputSystem;
 public class IdleState : MonoBehaviour, IState
 {
     public StateMachine Fsm { get; set; }
-    private Animator _animator;
-    private Rigidbody _rigidbody;
-    private InputAction _moveInput;
-    private InputAction _jumpInput;
-    public void InitState()
+    public Blackboard_Default Blackboard { get; set; }
+    public void InitState(IBlackboardBase blackboard)
     {
-        _animator = Fsm.GetComponent<Animator>();
-        _moveInput = Fsm.GetComponent<PlayerInput>().actions["Move"];
-        _jumpInput = Fsm.GetComponent<PlayerInput>().actions["Jump"];
-        _rigidbody = Fsm.GetComponent<Rigidbody>();
+        Blackboard = blackboard as Blackboard_Default;
     }
 
     public void Enter()
     {
-        _animator.CrossFade("Idles", 0.1f);
-        _animator.SetFloat("Speed", 0.0f);
+        Blackboard.animator.CrossFade("Idles", 0.1f);
+        Blackboard.animator.SetFloat("Speed", 0.0f);
     }
 
     public void UpdateState(float deltaTime)
     {
-        if (_jumpInput.triggered && GetComponent<Rigidbody>().velocity.y == 0.0f)
+        if (Blackboard.jumpInput.triggered && Blackboard.GetComponent<Rigidbody>().velocity.y == 0.0f)
         {
             Fsm.ChangeState<JumpState>();
             return;
         }
         
-        var value = _moveInput.ReadValue<Vector2>();
+        var value = Blackboard.moveInput.ReadValue<Vector2>();
         if (value.sqrMagnitude > 0)
         {
             Fsm.ChangeState<WalkState>();

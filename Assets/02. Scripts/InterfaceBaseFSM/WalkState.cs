@@ -3,42 +3,36 @@ using UnityEngine.InputSystem;
 
 public class WalkState : MonoBehaviour, IState
 {
-    [SerializeField] private float moveSpeed = 3.0f;
     public StateMachine Fsm { get; set; }
-    private Animator _animator;
-    private Rigidbody _rigidbody;
-    private InputAction _moveInput;
-    private InputAction _jumpInput;
-    public void InitState()
+    public Blackboard_Default Blackboard { get; set; }
+
+    public void InitState(IBlackboardBase blackboard)
     {
-        _animator = Fsm.GetComponent<Animator>();
-        _rigidbody = Fsm.GetComponent<Rigidbody>();
-        _moveInput = Fsm.GetComponent<PlayerInput>().actions["Move"];
-        _jumpInput = Fsm.GetComponent<PlayerInput>().actions["Jump"];
+        Blackboard = blackboard as Blackboard_Default;
     }
 
     public void Enter()
     {
-        _animator.CrossFade("Idles", 0.1f);
-        _animator.SetFloat("Speed", 1.0f);
+        Blackboard.animator.CrossFade("Idles", 0.1f);
+        Blackboard.animator.SetFloat("Speed", 1.0f);
     }
 
     public void UpdateState(float deltaTime)
     {
-        if (_jumpInput.triggered && _rigidbody.velocity.y == 0.0f)
+        if (Blackboard.jumpInput.triggered && Blackboard.GetComponent<Rigidbody>().velocity.y == 0.0f)
         {
             Fsm.ChangeState<JumpState>();
             return;
         }
         
-        var value = _moveInput.ReadValue<Vector2>();
+        var value = Blackboard.moveInput.ReadValue<Vector2>();
         if (0 >= value.sqrMagnitude)
         {
             Fsm.ChangeState<IdleState>();
             return;
         }
         
-        _rigidbody.velocity = new Vector3(value.x * moveSpeed, _rigidbody.velocity.y, value.y * moveSpeed);
+        Blackboard.GetComponent<Rigidbody>().velocity = new Vector3(value.x * Blackboard.moveSpeed, Blackboard.GetComponent<Rigidbody>().velocity.y, value.y * Blackboard.moveSpeed);
     }
 
     public void Exit()

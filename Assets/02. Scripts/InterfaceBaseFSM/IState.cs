@@ -1,8 +1,9 @@
 public interface IState
 {
     StateMachine Fsm { get; set; }
+    public Blackboard_Default Blackboard { get; set; }
 
-    void InitState();
+    void InitState(IBlackboardBase blackboard);
     
     void Enter();
     void UpdateState(float deltaTime);

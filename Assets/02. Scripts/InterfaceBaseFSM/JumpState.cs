@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class JumpState : MonoBehaviour, IState
 {
-    [SerializeField]private float JumpForce = 3f;
     public StateMachine Fsm { get; set; }
-    private Animator _animator;
-    private Rigidbody _rigidbody;
-    public void InitState()
+    public Blackboard_Default Blackboard { get; set; }
+    
+    public void InitState(IBlackboardBase blackboard)
     {
-        _animator = Fsm.GetComponent<Animator>();
-        _rigidbody = Fsm.GetComponent<Rigidbody>();
+        Blackboard = blackboard as Blackboard_Default;
     }
 
     public void Enter()
     {
-        _animator.CrossFade("Jump", 0.1f);
-        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, JumpForce, _rigidbody.velocity.z);
+        Blackboard.animator.CrossFade("Jump", 0.1f);
+        Blackboard.GetComponent<Rigidbody>().velocity = new Vector3(Blackboard.GetComponent<Rigidbody>().velocity.x, Blackboard.JumpForce, Blackboard.GetComponent<Rigidbody>().velocity.z);
     }
 
     public void UpdateState(float deltaTime)
     {
-        if (_rigidbody.velocity.y == 0.0f)
+        if (Blackboard.GetComponent<Rigidbody>().velocity.y == 0.0f)
         {
             Fsm.ChangeState<IdleState>();
         }
